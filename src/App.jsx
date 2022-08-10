@@ -1,6 +1,6 @@
 import Header from "./components/Header.jsx";
 import Formulario from "./components/formulario.jsx";
-import ListadoPaciente from "./components/ListadoPaciente.jsx";
+import ListadoPacientes from "./components/ListadoPacientes.jsx";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <Header />
         <div className='mt-12 md:flex'>
             <Formulario />
-            <ListadoPaciente />
+            <ListadoPacientes />
         </div>
     </div>)
 }
