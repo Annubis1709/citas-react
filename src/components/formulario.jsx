@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const Formulario = () => {
-    const [nomber, setNombre] = useState('');
+const Formulario = ({pacientes, setPacientes}) => {
+    const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
     const [Email, setEmail] = useState('');
     const [fecha, setFecha] = useState('');
@@ -11,21 +11,37 @@ const Formulario = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Form validation
-        if ([nomber, propietario, Email, fecha, sintomas].includes('')) {
+        if ([nombre, propietario, Email, fecha, sintomas].includes('')) {
             alert('Todos los campos son obligatorios');
             setError(true); // Show error message
             return;
         }
-        // else {
-        //     alert(`
-        //         Nombre: ${nomber}
-        //         Propietario: ${propietario}
-        //         Email: ${Email}
-        //         Fecha: ${fecha}
-        //         Sintomas: ${sintomas}
-        //     `);
-        // }
+        else {
+            alert(`
+                Nombre: ${nombre}
+                Propietario: ${propietario}
+                Email: ${Email}
+                Fecha: ${fecha}
+                Sintomas: ${sintomas}
+            `);
+        }
         setError(false); // Hide error message
+        const nuevoPaciente = {
+            nombre,
+            propietario,
+            Email,
+            fecha,
+            sintomas
+        };
+        // Add new paciente to the list
+        setPacientes([...pacientes, nuevoPaciente]);
+
+        // Reset form
+        setNombre('');
+        setPropietario('');
+        setEmail('');
+        setFecha('');
+        setSintomas('');
     }
 
     return (
@@ -47,7 +63,7 @@ const Formulario = () => {
                        type='text'
                        id='nombre'
                        placeholder='Nombre de la mascota'
-                       value={nomber}
+                       value={nombre}
                        onChange={(event) => setNombre(event.target.value)}
                     />
                 </div>
